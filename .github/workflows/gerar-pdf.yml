@@ -1,12 +1,13 @@
 name: Gerar PDFs dos artefatos Markdown
 
 on:
-  # Dispara automaticamente quando arquivos .md forem modificados
   push:
     paths:
-      - 'artefatos/**/*.md'
-  # Também pode ser executado manualmente
-  workflow_dispatch:
+      - 'artefatos/**/*.md'   # só roda quando arquivos .md forem alterados
+  workflow_dispatch:          # permite execução manual
+
+permissions:
+  contents: write             # ✅ permite commit/push de volta no repositório
 
 jobs:
   gerar-pdf:
@@ -16,7 +17,7 @@ jobs:
       - name: Clonar o repositório
         uses: actions/checkout@v4
 
-      - name: Instalar o Pandoc
+      - name: Instalar o Pandoc e LaTeX
         run: sudo apt-get install -y pandoc texlive-xetex
 
       - name: Converter arquivos Markdown em PDF
@@ -27,18 +28,16 @@ jobs:
             pandoc "$file" -o "artefatos/pdf/${filename}.pdf" --pdf-engine=xelatex
           done
 
-      - name: Publicar PDFs como artefatos de build
+      - name: Publicar PDFs como artefatos (opcional)
         uses: actions/upload-artifact@v4
         with:
           name: artefatos-pdf
           path: artefatos/pdf/
 
-      # Opcional: Comitar os PDFs gerados de volta ao repositório
-      - name: Commit PDFs gerados
+      - name: Commit PDFs gerados automaticamente
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "actions@github.com"
           git add artefatos/pdf/*.pdf
-          git commit -m "Atualiza PDFs gerados automaticamente"
+          git commit -m "[skip ci] Atualiza PDFs gerados automaticamente" || echo "Sem mudanças"
           git push
-
