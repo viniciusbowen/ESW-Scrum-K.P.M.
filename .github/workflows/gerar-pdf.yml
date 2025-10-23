@@ -1,43 +1,47 @@
-name: Gerar PDFs dos artefatos Markdown
+name: Converter todos os Markdown em PDF
 
 on:
   push:
-    paths:
-      - 'artefatos/**/*.md'   # só roda quando arquivos .md forem alterados
-  workflow_dispatch:          # permite execução manual
-
-permissions:
-  contents: write             # ✅ permite commit/push de volta no repositório
+    branches:
+      - main  # Executa quando há push na main
+  workflow_dispatch:  # Permite execução manual
 
 jobs:
-  gerar-pdf:
+  gerar-pdfs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Clonar o repositório
+      - name: 🧩 Clonar repositório
         uses: actions/checkout@v4
 
-      - name: Instalar o Pandoc e LaTeX
-        run: sudo apt-get install -y pandoc texlive-xetex
-
-      - name: Converter arquivos Markdown em PDF
+      - name: 🧰 Instalar Pandoc e LaTeX
         run: |
-          mkdir -p artefatos/pdf
-          for file in artefatos/*.md; do
-            filename=$(basename "$file" .md)
-            pandoc "$file" -o "artefatos/pdf/${filename}.pdf" --pdf-engine=xelatex
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive texlive-latex-extra
+
+      - name: 📂 Criar pasta docs
+        run: mkdir -p docs
+
+      - name: 📝 Converter todos os .md em PDFs com margens reduzidas
+        run: |
+          # Procura todos os arquivos .md no repositório, exceto da pasta .git
+          find . -type f -name "*.md" ! -path "./.git/*" | while read file; do
+            # Gera o nome do PDF correspondente (substitui / por -)
+            base=$(basename "$file" .md)
+            safe_name=$(echo "$file" | sed 's|^./||; s|/|-|g; s|\.md$||')
+            pandoc "$file" -o "docs/${safe_name}.pdf" -V geometry:margin=1cm
+            echo "✅ Gerado: docs/${safe_name}.pdf"
           done
 
-      - name: Publicar PDFs como artefatos (opcional)
+      - name: 💾 Upload dos PDFs como artefato (opcional)
         uses: actions/upload-artifact@v4
         with:
-          name: artefatos-pdf
-          path: artefatos/pdf/
+          name: PDFs-Gerados
+          path: docs/
 
-      - name: Commit PDFs gerados automaticamente
-        run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
-          git add artefatos/pdf/*.pdf
-          git commit -m "[skip ci] Atualiza PDFs gerados automaticamente" || echo "Sem mudanças"
-          git push
+      # (Opcional) publicar a pasta /docs no GitHub Pages
+      # - name: 🌍 Publicar PDFs no GitHub Pages
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./docs
