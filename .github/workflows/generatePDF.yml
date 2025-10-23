@@ -1,9 +1,44 @@
-            - name: Create PDF
-  # You may pin to the exact commit or the version.
-  # uses: mkrakowitzer/actions-makepdfs@07f1b3912a5dbcd72fe0feed3a3047a17c976d5e
-  uses: mkrakowitzer/actions-makepdfs@v1.3
-  with:
-    # Location of markdown files in github repository
-    markdown_dir: # default is doc
-    # Location to output PDF files to
-    output_dir: # default is tmp
+name: Gerar PDFs dos artefatos Markdown
+
+on:
+  # Dispara automaticamente quando arquivos .md forem modificados
+  push:
+    paths:
+      - 'artefatos/**/*.md'
+  # Também pode ser executado manualmente
+  workflow_dispatch:
+
+jobs:
+  gerar-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar o repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar o Pandoc
+        run: sudo apt-get install -y pandoc texlive-xetex
+
+      - name: Converter arquivos Markdown em PDF
+        run: |
+          mkdir -p artefatos/pdf
+          for file in artefatos/*.md; do
+            filename=$(basename "$file" .md)
+            pandoc "$file" -o "artefatos/pdf/${filename}.pdf" --pdf-engine=xelatex
+          done
+
+      - name: Publicar PDFs como artefatos de build
+        uses: actions/upload-artifact@v4
+        with:
+          name: artefatos-pdf
+          path: artefatos/pdf/
+
+      # Opcional: Comitar os PDFs gerados de volta ao repositório
+      - name: Commit PDFs gerados
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add artefatos/pdf/*.pdf
+          git commit -m "Atualiza PDFs gerados automaticamente"
+          git push
+
