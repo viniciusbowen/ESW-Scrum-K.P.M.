@@ -1,6 +1,7 @@
 # Scrum K.P.M.
-## Scrum K.P.M. is a sofware based in Kanban Project Maneger to assist agile teams to do cooperative software enginners...
+## Autores: Vinícius Bowen, Vinícius Brito e Marcelo Vitor
 
+## Scrum K.P.M. is a sofware based in Kanban Project Maneger to assist agile teams to do cooperative software enginners...
 
 #### Teste de tabela markdown
 | Alinhado à esquerda | Centralizado | Alinhado à direita |
