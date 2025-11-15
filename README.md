@@ -1,10 +1,5 @@
-# Scrum K.P.M.
-## Autores: Vinícius Bowen, Vinícius Brito e Marcelo Vitor
+# Projeto para a disciplina de Engenharia de Software - UnB - 2025.2
 
-## Scrum K.P.M. is a sofware based in Kanban Project Maneger to assist agile teams to do cooperative software enginners...
+## Autores: Marcelo Vitor Meira de Lucena, Vinícius de Sousa Brito e Vinícius Monteiro Drumond Bowen
 
-#### Teste de tabela markdown
-| Alinhado à esquerda | Centralizado | Alinhado à direita |
-| :------------------ | :----------: | ------------------: |
-| Texto à esquerda    | Texto cent.  | Texto à direita     |
-| Outro texto         | Outro texto  | Outro texto         |
+O trabalho consiste em construir artefatos por meio de processo de desenvolvimento iterativo e incremental. Para subsidiar a construção dos artefatos solicitados, podem ser acessados sistemas de software existentes. Por exemplo, acesso a sistemas existentes pode facilitar a construção de artefatos resultantes de atividades da disciplina requisitos de software.
