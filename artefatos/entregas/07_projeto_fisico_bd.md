@@ -25,7 +25,18 @@ Abaixo são descritas todas as tabelas, seus campos, chaves e relacionamentos.
 Armazena os dados dos usuários do sistema, incluindo credenciais de acesso e informações pessoais básicas. Cada usuário pode participar de um ou mais projetos e assumir diferentes papéis (Product Owner, Scrum Master, Desenvolvedor).
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_usuario | INT AUTO_INCREMENT | NÃO | PK | Identificador único do usuário | | nome | VARCHAR(100) | NÃO | | Nome completo do usuário | | email | VARCHAR(100) | NÃO | UNIQUE | E-mail utilizado para login | | senha_hash | VARCHAR(255) | NÃO | | Senha criptografada | | data_cadastro | DATETIME | NÃO | | Data de criação do registro | | ativo | BOOLEAN | NÃO | | Indica se o usuário está ativo no sistema |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_usuario | INT AUTO_INCREMENT | NÃO | PK | Identificador único do usuário |
+| nome | VARCHAR(100) | NÃO |
+| Nome completo do usuário |
+| email | VARCHAR(100) | NÃO | UNIQUE | E-mail utilizado para login |
+| senha_hash | VARCHAR(255) | NÃO |
+| Senha criptografada |
+| data_cadastro | DATETIME | NÃO |
+| Data de criação do registro |
+| ativo | BOOLEAN | NÃO |
+| Indica se o usuário está ativo no sistema |
 
 **Relacionamentos:**
 
@@ -40,7 +51,13 @@ Armazena os dados dos usuários do sistema, incluindo credenciais de acesso e in
 Define os papéis possíveis dentro de um projeto Scrum (ex: Product Owner, Scrum Master, Desenvolvedor).
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_papel | INT AUTO_INCREMENT | NÃO | PK | Identificador único do papel | | nome_papel | VARCHAR(50) | NÃO | | Nome do papel (Product Owner, etc.) | | descricao | VARCHAR(255) | SIM | | Breve descrição da função no projeto |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_papel | INT AUTO_INCREMENT | NÃO | PK | Identificador único do papel |
+| nome_papel | VARCHAR(50) | NÃO |
+| Nome do papel (Product Owner, etc.) |
+| descricao | VARCHAR(255) | SIM |
+| Breve descrição da função no projeto |
 
 **Relacionamentos:**
 
@@ -54,7 +71,19 @@ Define os papéis possíveis dentro de um projeto Scrum (ex: Product Owner, Scru
 Representa um projeto Scrum dentro do sistema, contendo informações gerais e associando usuários e sprints.
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_projeto | INT AUTO_INCREMENT | NÃO | PK | Identificador único do projeto | | nome | VARCHAR(100) | NÃO | | Nome do projeto | | descricao | TEXT | SIM | | Descrição detalhada do projeto | | data_inicio | DATE | NÃO | | Data de início planejada | | data_fim | DATE | SIM | | Data de término planejada | | status | ENUM('Planejado','Em andamento','Concluído','Cancelado') | NÃO | | Estado atual do projeto |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_projeto | INT AUTO_INCREMENT | NÃO | PK | Identificador único do projeto |
+| nome | VARCHAR(100) | NÃO |
+| Nome do projeto |
+| descricao | TEXT | SIM |
+| Descrição detalhada do projeto |
+| data_inicio | DATE | NÃO |
+| Data de início planejada |
+| data_fim | DATE | SIM |
+| Data de término planejada |
+| status | ENUM('Planejado','Em andamento','Concluído','Cancelado') | NÃO |
+| Estado atual do projeto |
 
 **Relacionamentos:**
 
@@ -69,7 +98,13 @@ Representa um projeto Scrum dentro do sistema, contendo informações gerais e a
 Tabela de associação que vincula usuários a projetos e define seus papéis dentro de cada um.
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_usuario | INT | NÃO | PK, FK | Identificador do usuário | | id_projeto | INT | NÃO | PK, FK | Identificador do projeto | | id_papel | INT | NÃO | FK | Papel exercido no projeto | | data_vinculo | DATETIME | NÃO | | Data de associação ao projeto |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_usuario | INT | NÃO | PK, FK | Identificador do usuário |
+| id_projeto | INT | NÃO | PK, FK | Identificador do projeto |
+| id_papel | INT | NÃO | FK | Papel exercido no projeto |
+| data_vinculo | DATETIME | NÃO |
+| Data de associação ao projeto |
 
 **Relacionamentos:**
 
@@ -85,7 +120,18 @@ Tabela de associação que vincula usuários a projetos e define seus papéis de
 Contém os dados das sprints de cada projeto, como objetivo, duração e status.
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_sprint | INT AUTO_INCREMENT | NÃO | PK | Identificador da sprint | | id_projeto | INT | NÃO | FK | Projeto ao qual a sprint pertence | | nome | VARCHAR(100) | NÃO | | Nome ou objetivo da sprint | | data_inicio | DATE | NÃO | | Data de início da sprint | | data_fim | DATE | NÃO | | Data de término da sprint | | status | ENUM('Planejada','Em andamento','Encerrada') | NÃO | | Situação atual da sprint |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_sprint | INT AUTO_INCREMENT | NÃO | PK | Identificador da sprint |
+| id_projeto | INT | NÃO | FK | Projeto ao qual a sprint pertence |
+| nome | VARCHAR(100) | NÃO |
+| Nome ou objetivo da sprint |
+| data_inicio | DATE | NÃO |
+| Data de início da sprint |
+| data_fim | DATE | NÃO |
+| Data de término da sprint |
+| status | ENUM('Planejada','Em andamento','Encerrada') | NÃO |
+| Situação atual da sprint |
 
 **Relacionamentos:**
 
@@ -100,12 +146,27 @@ Contém os dados das sprints de cada projeto, como objetivo, duração e status.
 Armazena as histórias de usuário associadas a cada sprint, representando requisitos funcionais descritos em formato ágil.
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_historia | INT AUTO_INCREMENT | NÃO | PK | Identificador da história | | id_sprint | INT | NÃO | FK | Sprint associada | | titulo | VARCHAR(100) | NÃO | | Título resumido da história | | descricao | TEXT | SIM | | Descrição detalhada da história | | prioridade | ENUM('Alta','Média','Baixa') | NÃO | | Grau de prioridade | | pontos | INT | SIM | | Pontuação atribuída (story points) | | status | ENUM('To Do','Doing','Done') | NÃO | | Estado atual da história |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_historia | INT AUTO_INCREMENT | NÃO | PK | Identificador da história |
+| id_sprint | INT | SIM | FK | Sprint associada |
+| id_projeto | INT | NÃO | FK | Projeto ao qual a história pertence |
+| titulo | VARCHAR(100) | NÃO |
+| Título resumido da história |
+| descricao | TEXT | SIM |
+| Descrição detalhada da história |
+| prioridade | ENUM('Alta','Média','Baixa') | NÃO |
+| Grau de prioridade |
+| pontos | INT | SIM |
+| Pontuação atribuída (story points) |
+| status | ENUM('To Do','Doing','Done') | NÃO |
+| Estado atual da história |
 
 **Relacionamentos:**
 
 - FK (id_sprint) → **SPRINT(id_sprint)**
 - 1:N com **TAREFA**
+- FK (id_projeto) → **PROJETO(id_projeto)**
 
 ---
 
@@ -115,7 +176,21 @@ Armazena as histórias de usuário associadas a cada sprint, representando requi
 Representa as tarefas específicas derivadas de uma história de usuário. Cada tarefa pode ser atribuída a um desenvolvedor.
 
 **Campos:**  
-| Campo | Tipo | Nulo | Chave | Descrição | |-------|------|------|--------|-----------| | id_tarefa | INT AUTO_INCREMENT | NÃO | PK | Identificador da tarefa | | id_historia | INT | NÃO | FK | História de usuário associada | | id_usuario_responsavel | INT | SIM | FK | Usuário responsável pela execução | | titulo | VARCHAR(100) | NÃO | | Nome curto da tarefa | | descricao | TEXT | SIM | | Detalhamento da tarefa | | status | ENUM('To Do','Doing','Done') | NÃO | | Situação atual | | data_criacao | DATETIME | NÃO | | Data de criação | | data_conclusao | DATETIME | SIM | | Data de conclusão |
+| Campo | Tipo | Nulo | Chave | Descrição |
+|-------|------|------|--------|-----------|
+| id_tarefa | INT AUTO_INCREMENT | NÃO | PK | Identificador da tarefa |
+| id_historia | INT | NÃO | FK | História de usuário associada |
+| id_usuario_responsavel | INT | SIM | FK | Usuário responsável pela execução |
+| titulo | VARCHAR(100) | NÃO |
+| Nome curto da tarefa |
+| descricao | TEXT | SIM |
+| Detalhamento da tarefa |
+| status | ENUM('To Do','Doing','Done') | NÃO |
+| Situação atual |
+| data_criacao | DATETIME | NÃO |
+| Data de criação |
+| data_conclusao | DATETIME | SIM |
+| Data de conclusão |
 
 **Relacionamentos:**
 
