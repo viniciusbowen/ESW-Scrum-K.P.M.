@@ -81,5 +81,5 @@ Mecanismos são soluções para problemas comuns que se repetem no sistema.
   - Assumimos que o usuário terá um ambiente Python configurado para a execução local.
   - Assumimos que o volume de dados será pequeno, não exigindo otimizações complexas de banco de dados (ex: _sharding_ ou replicação).
 - **Dependências:**
-  - O backend depende criticamente do `fastapi`, `uvicorn` (servidor), `sqlalchemy` (ORM) e `psycopg2` (driver do MySQL).
+  - O backend depende criticamente do `fastapi`, `uvicorn` (servidor), `sqlalchemy` (ORM) e `mysqlclient` (driver do MySQL).
   - O frontend depende de um navegador moderno que execute JavaScript para fazer as chamadas de API (`fetch`).
