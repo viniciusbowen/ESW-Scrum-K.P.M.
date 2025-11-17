@@ -1,4 +1,5 @@
 # Atribuições de cada membro da equipe
+Repositório: https://github.com/viniciusbowen/ESW-Scrum-K.P.M./tree/main
 
 ## Marcelo Vitor Meira de Lucena - 221030034
 
