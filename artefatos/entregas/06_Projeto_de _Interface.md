@@ -2,7 +2,8 @@
   
 <img width="8062" height="2188" alt="image" src="https://github.com/user-attachments/assets/0dc73cdd-2171-4490-b72c-252a7f513726" />
 
-Link para verificação dos Storybors em simulaçao clicável: ![Link](https://www.figma.com/proto/tdiqEoi11t13PEwdR3ekUa/Scrum-KPM?node-id=4412-331&t=hcxCUpT59GbAM54j-8&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&hotspot-hints=0&disable-default-keyboard-nav=1&hide-ui=1)
+Link para verificação dos Storybors em simulaçao clicável: https://www.figma.com/proto/tdiqEoi11t13PEwdR3ekUa/Scrum-KPM?node-id=4412-331&t=hcxCUpT59GbAM54j-8&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&hotspot-hints=0&disable-default-keyboard-nav=1&hide-ui=1
+
 ## **1. Uso de Wireframes no Projeto**
 
 Os **wireframes** desempenham um papel fundamental no processo de design de interfaces, especialmente nas etapas iniciais de concepção descritas pelo *SWEBOK* (Software Engineering Body of Knowledge). Eles representam esboços simplificados das telas do sistema, focando apenas na **estrutura**, **layout** e **posicionamento dos elementos**, sem incluir aspectos visuais finais como cores, tipografia refinada ou identidade visual completa.
