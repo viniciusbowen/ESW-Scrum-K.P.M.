@@ -1,6 +1,6 @@
 # **Introdução ao Projeto de Interface com o Usuário (Artefato 6)**
 
-<!-- <img width="8062" height="2188" alt="image" src="https://github.com/user-attachments/assets/0dc73cdd-2171-4490-b72c-252a7f513726" /> -->
+<img width="8062" height="2188" alt="image" src="https://github.com/user-attachments/assets/0dc73cdd-2171-4490-b72c-252a7f513726" />
 
 https://github.com/user-attachments/assets/0dc73cdd-2171-4490-b72c-252a7f513726
 
